@@ -7,7 +7,7 @@ def is_Palindrome(n):
         i+=1
         j-=1
     return True
-def MaxPalindrome(s):
+'''def MaxPalindrome(s):
     i=0
     j=1
     longest=""
@@ -16,10 +16,24 @@ def MaxPalindrome(s):
             substring = s[i:j+1] #extract substring starting at i and ending at j
             if is_Palindrome(substring) and len(substring) >= len(longest):
                 longest = substring
-    return longest
+    return longest'''
 #print('Largest Palindrome: ', MaxPalindrome('aabcbcdd'))
 #print(Palindrome('sos'))
 #print(Palindrome('hai'))
 #print(MaxPalindrome('aabcbcdd'))
 #abccdd
-print(MaxPalindrome('avcccdddccwqzszsam'))
+#print(MaxPalindrome('avcccdddccwqzszsam'))
+
+#using two-pointers
+def LongestPal(n):
+    l = 0
+    r = 1
+    longest = ''
+    while l<len(n) and r<len(n):
+        i = l
+        j = r
+        while i<j:
+            if (j-i+1)>len(longest) and is_Palindrome(longest):
+                longest = n[i:j+1]
+        return longest
+print(LongestPal('aabcbcdd'))
