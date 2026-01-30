@@ -11,3 +11,4 @@ def Armstrong_numb():
             result = digits[i] ** numb_of_digits
     return result
 print(f'Armstrong Number is {Armstrong_numb()}')
+#pr practise
