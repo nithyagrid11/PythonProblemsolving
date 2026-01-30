@@ -5,7 +5,6 @@ It contains problem-solving exercises, logic building programs, and coding pract
 
 I actively update this repository as I learn and practice new concepts.
 
----
 
 ## Goals
 
