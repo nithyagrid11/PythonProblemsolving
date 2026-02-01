@@ -1,13 +1,26 @@
-def is_Palindrome(n):
-    list1 = list(n)
-    i,j=0, len(list1)-1
-    while i<j:
-        if list1[i] != list1[j]:
-            return False
-        i+=1
-        j-=1
-    return True
-'''def MaxPalindrome(s):
+#2-pointer approach
+def Longest_palindrome(s):
+    max_str = s[0:1]
+    def expand_from_center(l,r):
+        while l>=0 and r<len(s) and s[l] == s[r]: #we are checking only if it is palindrome so no need to call the is_Palindrome func
+            l-=1
+            r+=1
+        return s[l+1:r]
+    i = 0
+    for i in range(len(s)):
+        odd = expand_from_center(i,i)
+        even = expand_from_center(i,i+1)
+        if len(odd) > len(max_str):
+            max_str = odd
+        if len(even) > len(max_str):
+            max_str = even
+    return max_str
+print('Largest Palindrome: ', Longest_palindrome('aacbbcdd'))
+print('Largest Palindrome: ', Longest_palindrome('avcccdddccwqzszsam'))
+
+
+#brute-force method
+'''def Longest_Palindrome(s):
     i=0
     j=1
     longest=""
@@ -17,25 +30,7 @@ def is_Palindrome(n):
             if is_Palindrome(substring) and len(substring) >= len(longest):
                 longest = substring
     return longest'''
-#print('Largest Palindrome: ', MaxPalindrome('aabcbcdd'))
-#print(Palindrome('sos'))
 #print(Palindrome('hai'))
 #print(MaxPalindrome('aabcbcdd'))
 #abccdd
-#print(MaxPalindrome('avcccdddccwqzszsam'))
 
-#using two-pointers
-def LongestPal(n):
-    l = 0
-    r = 1
-    longest = ""
-    while l<len(n) and r<len(n):
-        i = l
-        j = r
-        while i<j:
-            substring = n[i:j+1]
-            #if (j-i+1)>len(longest) and is_Palindrome(longest):
-                #longest = 
-        return longest
-print(LongestPal('aabcbcdd'))
-# pr practise
