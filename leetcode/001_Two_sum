@@ -1,0 +1,8 @@
+class Solution(object):
+    def twoSum(self, nums, target):
+        num_map={}
+        for i in range(len(nums)):
+            needed=target-nums[i]
+            if needed in num_map:
+                return [num_map[needed],i]
+            num_map[nums[i]]=i
