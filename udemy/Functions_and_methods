@@ -1,0 +1,37 @@
+def volume(r):
+    return (4/3)*(3.14)*(r**3)
+print(volume(2))
+
+def ran_bool(num,low,high):
+    return num in range(low,high+1)
+print(ran_bool(3,5,7))
+
+def up_low(s):
+    d = {'upper':0,'lower':1}
+    for i in s:
+        if i.isupper():
+            d["upper"] += 1
+        elif i.islower():
+            d["lower"] += 1
+        else:
+            pass
+    print('Original String : ',s)
+    print('No of upper case characters: ', d['upper'])
+    print('No of upper case characters: ', d['lower'])
+s = 'Hello, Today is Monday and second of the Month'
+print(up_low(s))
+
+def unique_list(num):
+    x = []
+    for a in num:
+        if a not in x:
+            x.append(a)
+    return x
+print(unique_list([1,1,1,2,3,4,5,4,3,2]))
+
+def multiply(lst):
+    total = 1
+    for i in lst:
+        total *= i
+    return total
+print(multiply([1,2,3,4,5]))

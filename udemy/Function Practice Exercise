@@ -1,0 +1,104 @@
+def lesser_of_two_evens(a,b):
+    if a %2 == 0 and b %2 == 0:
+        return min(a,b)
+    else:
+        return max(a,b)
+print(lesser_of_two_evens(2,4))
+print(lesser_of_two_evens(2,5))
+
+def animal_crackers(text):
+    words = text.split()
+    return words[0][0] == words[1][0]
+print(animal_crackers('Levelheaded Llama'))
+
+def makes_twenty(a,b):
+    if a+b == 20 or a==20 or b==20:
+        return True
+    else:
+        return False
+print(makes_twenty(20,10))
+print(makes_twenty(12,8))
+print(makes_twenty(2,3))
+
+def old_macdonald(name):
+    if len(name) > 3:
+        return name[:3].capitalize() + name[3:].capitalize()
+    else:
+        return 'Name is too short'
+print(old_macdonald('macdonald'))
+
+def master_yoda(text):
+    words = text.split()
+    return ' '.join(words[::-1])
+print(master_yoda('I am home'))
+
+def almost_there(n):
+    if abs(100-n) <= 10 or abs(200-10) <= 10:
+        return True
+    else:
+        return False
+print(almost_there(90))
+print(almost_there(150))
+
+def has_33(nums):
+    for i in range(0,len(nums)-1):
+        if nums[i] == 3 and nums[i+1] == 3:
+            return True
+    return False
+print(has_33([1,2,3]))
+print(has_33([1,3,3,4]))
+
+def paper_doll(text):
+    result = ''
+    for char in text:
+        result += char *3
+    return result
+print(paper_doll('Hello'))
+
+def blackjack(a,b,c):
+    if sum((a,b,c)) <= 21:
+        return sum((a,b,c))
+    elif sum((a,b,c)) - 10 <= 21 and 11 in (a,b,c):
+        return sum((a,b,c)) - 10
+    else:
+        return 'BUST'
+print(blackjack(5,6,7))
+
+def summer(arr):
+    total = 0
+    add = True
+    for num in arr:
+        if num == 6:
+            add = False
+        elif num == 9:
+            add = True
+        elif add:
+            total += num
+    return total
+print(summer([1,3,5,6,7,8,9,11]))
+print(summer([1,3,5,6,8,9]))
+
+def spy_game(arr):
+    code = [0,0,7,'x']
+    for num in arr:
+        if num == code[0]:
+            code.pop(0)
+    return len(code) == 1
+print(spy_game([1,2,4,0,0,7,5]))
+
+def count_primes(num):
+    if num < 2:
+        return 0
+    primes =[2]
+    x = 3
+    while x <= num:
+        for y in range(3,x,2):
+            if x%y == 0:
+                x+=2
+                break
+        else:
+            primes.append(x)
+            x+=2
+    print(primes)
+    return len(primes)
+print(count_primes(100))
