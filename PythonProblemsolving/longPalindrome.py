@@ -1,5 +1,5 @@
 #2-pointer approach
-'''def Longest_palindrome(s):
+def Longest_palindrome(s):
     max_str = s[0:1]
     def expand_from_center(l,r):
         while l>=0 and r<len(s) and s[l] == s[r]: #we are checking only if it is palindrome so no need to call the is_Palindrome func
@@ -16,11 +16,11 @@
             max_str = even
     return max_str
 print('Largest Palindrome: ', Longest_palindrome('aacbbcdd'))
-print('Largest Palindrome: ', Longest_palindrome('avcccdddccwqzszsam'))'''
+print('Largest Palindrome: ', Longest_palindrome('avcccdddccwqzszsam'))
 
 
 #brute-force method
-def is_Palindrome(n):
+'''def is_Palindrome(n):
     i,j=0, len(n)-1
     while i<j:
         if n[i]!=n[j]:
@@ -38,7 +38,5 @@ def Longest_Palindrome(s):
             if is_Palindrome(substring) and len(substring) >= len(longest_palindrome):
                 longest_palindrome = substring
     return longest_palindrome
-print(Longest_Palindrome('aacbbcdd'))
-#print(MaxPalindrome('aabcbcdd'))
-#abccdd
+print(Longest_Palindrome('aacbbcdd'))'''
 
