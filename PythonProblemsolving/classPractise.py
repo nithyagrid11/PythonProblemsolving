@@ -37,4 +37,5 @@ p1 = Phone('S21')
 p2 = Phone('S22')
 p1.brand = 'Apple'
 print(p1.brand)
-print(p2.brand)
+print(p1.brand)
+#practised on basic class and object creation
