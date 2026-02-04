@@ -1,8 +1,7 @@
 def Palindrome(n):
-    list1 = list(n)
-    i,j=0, len(list1)-1
+    i,j=0, len(n)-1
     while i<j:
-        if list1[i]!=list1[j]:
+        if n[i]!=n[j]:
             return 'Not Palindrome'
         i+=1
         j-=1
