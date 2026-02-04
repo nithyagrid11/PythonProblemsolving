@@ -22,3 +22,4 @@ class Bank:
 b1 = Bank('Nithya',500)
 b1.deposit(100)
 b1.withdraw(200)
+#practised the challenge gave in udemy
