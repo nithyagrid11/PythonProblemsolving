@@ -20,17 +20,23 @@ print('Largest Palindrome: ', Longest_palindrome('avcccdddccwqzszsam'))
 
 
 #brute-force method
-'''def Longest_Palindrome(s):
+'''def is_Palindrome(n):
+    i,j=0, len(n)-1
+    while i<j:
+        if n[i]!=n[j]:
+            return False
+        i+=1
+        j-=1
+    return True
+def Longest_Palindrome(s):
     i=0
     j=1
-    longest=""
+    longest_palindrome=""
     for i in range(len(s)):
         for j in range(i,len(s)):
             substring = s[i:j+1] #extract substring starting at i and ending at j
-            if is_Palindrome(substring) and len(substring) >= len(longest):
-                longest = substring
-    return longest'''
-#print(Palindrome('hai'))
-#print(MaxPalindrome('aabcbcdd'))
-#abccdd
+            if is_Palindrome(substring) and len(substring) >= len(longest_palindrome):
+                longest_palindrome = substring
+    return longest_palindrome
+print(Longest_Palindrome('aacbbcdd'))'''
 
