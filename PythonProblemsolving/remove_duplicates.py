@@ -7,13 +7,6 @@
     return hash_set
 print(longest_substring('aaeyfghbbg'))'''
 
-'''def longest_substring(s):
-    substring = ''
-    for i in range(len(s)):
-        if s[i] not in substring:
-            substring += s[i]
-    return substring
-print(longest_substring('abccefghbca'))'''
 
 def longest_substring(s):
     seen = set()
