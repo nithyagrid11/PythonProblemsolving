@@ -18,8 +18,8 @@ example = products[0]
 print(example.select('a')[1])
 print(example.select('a')[1]['title'])'''
 
-res = requests.get('http://quotes.toscrape.com/')
-soup = bs4.BeautifulSoup(res.text,'lxml')
+#res = requests.get('http://quotes.toscrape.com/')
+#soup = bs4.BeautifulSoup(res.text,'lxml')
 #print(soup)
 #print(soup.select('.author'))
 
@@ -31,7 +31,7 @@ print(quotes)'''
 '''for name in soup.select('.tag-item'):
     print(name.text)'''
 
-url = 'http://quotes.toscrape.com/page/'
+'''url = 'http://quotes.toscrape.com/page/'
 #print(url + str(10))
 authors = set()
 for page in range(1,10):
@@ -40,4 +40,11 @@ for page in range(1,10):
     soup = bs4.BeautifulSoup(res.text,"lxml")
     for name in soup.select('.author'):
         authors.add(name.text)
-print(authors)
+print(authors)'''
+
+
+from PIL import Image
+mac = Image.open('example.jpeg')
+print(mac.show())
+print(mac.size)
+print(mac.filename)
