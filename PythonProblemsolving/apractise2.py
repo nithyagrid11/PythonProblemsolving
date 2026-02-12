@@ -178,7 +178,7 @@ for x in flatten_dict(data):
 #data = {"a": 1,
 #        "b": [2, {"c": 3, "d": [4, 5] } ],
 #        "e": {"f": 6} }
-def flatten_values(dict1):
+'''def flatten_values(dict1):
     if isinstance(dict1,dict):
         for value in dict1.values():
             yield from flatten_values(value)
@@ -193,4 +193,12 @@ data = {
     "e": {"f": 6}
 }
 for x in flatten_values(data):
-    print(x)
+    print(x)'''
+
+def expense_func(id,description,amount):
+        Day = dict()
+        while True:
+           Day['id'] = id
+           Day['desc'] = description
+           Day['amount'] = amount
+print(expense_func(1,'coffee',50))

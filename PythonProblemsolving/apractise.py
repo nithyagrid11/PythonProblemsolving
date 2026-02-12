@@ -151,11 +151,13 @@ print(common)
 print(union)'''
 
 #
-data = [
+'''data = [
     ("Ram",[80,90]),
     ("Sita",[70,60])
 ]
 freq = {}
 for name,marks in data:
     freq[name] = (marks[0] + marks[1])/2
-print(freq)
+print(freq)'''
+
+
