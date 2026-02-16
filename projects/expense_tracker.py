@@ -1,19 +1,41 @@
 class Tracker:
     
     def __init__(self):
-        self.all_days = {1: [], 2: [], 3: []}
         self.current_day = 1
         self.next_id = 1
+        self.monthly_budget = 10000
+        self.all_days = {self.current_day: []}
+    
+    def total_spent(self):
+        total = 0
+        for day in self.all_days:
+            for exp in self.all_days[day]:
+                total += exp['amount']
+        return total
+    def burn_rate(self):
+        total = self.total_spent()
+        days_passed = self.current_day
+        if days_passed == 0:
+            return 0
+        return total / days_passed
+    def budget_variance(self):
+        return self.monthly_budget - self.total_spent()
+
 
     #func taking i/p values and appending to all_days dictionary
-    def expense_func(self,description,amount):
+    def expense_func(self, description, amount, category):
         if self.current_day > 3:
             print("Tracker completed. No more entries allowed.")
-            print('warning')
-            exit
-        
-        id = self.next_id
-        one_expense = {'id': id, 'description': description, 'amount': amount}
+            return
+        if self.total_spent() + amount > self.monthly_budget:
+            print("⚠ Budget will be exceeded!")
+        if self.current_day not in self.all_days:
+            self.all_days[self.current_day] = []
+        one_expense = {
+            'id': self.next_id,
+            'description': description,
+            'amount': amount,
+            'category': category }
         self.all_days[self.current_day].append(one_expense)
         self.next_id += 1
     
@@ -81,14 +103,15 @@ while True:
     if choice == '1':
         desc = input('Enter description: ')
         amount = int(input("enter amount: "))
-        tracker.expense_func(desc,amount)
+        category = input("Enter category: ")
+        tracker.expense_func(desc,amount,category)
     elif choice == '2':
         tracker.display_today_expenses()
     elif choice == '3':
         tracker.show_last_expense()
     elif choice == '4':
         tracker.end_day()
-    elif choice == '4':
+    elif choice == '5':
         print('Exit')
         break
     else:
