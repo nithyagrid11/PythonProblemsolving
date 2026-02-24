@@ -47,11 +47,19 @@ class Todolist:
     def update(self,task_id):
         for task in self.list_items:
             if task['id'] == task_id:
-                task['current_status'] = not task['current_status']
-                new_due_date = int(input('Enter a new date: '))
-                task['due_date'] = datetime.strftime(new_due_date,"%d-%m-%Y")
-                return True
-        return False
+                #status
+                print('Current status of the task: ',task['current_status'])
+                change = input('Do you want to change the status (y/n): ')
+                if change.lower() == 'y':
+                    task['current_status'] = not task['current_status']
+                #due date
+                print('Current due date of the task: ',task['due_date'].strftime('%d-%m-%Y'))
+                change_date = input('Do you want to change the due date of the task (y/n): ')
+                if change_date.lower() == 'y':
+                    new_due_date = input('Enter a new date: ')
+                    task['due_date'] = datetime.strptime(new_due_date,"%d-%m-%Y")
+                return 'Task updated'
+        return 'Task not found'
     
     #delete a task
     def delete(self,task_id):
