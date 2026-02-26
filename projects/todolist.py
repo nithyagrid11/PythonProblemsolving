@@ -6,9 +6,9 @@ class Todolist:
         self.list_items = []
 
     def gen_id(self):
-        id = self.current_id
+        task_id = self.current_id
         self.current_id += 1
-        return id
+        return task_id
     
     def create(self,desc,current_status,due_date_str):
 
@@ -33,7 +33,7 @@ class Todolist:
             f"Status: {task['current_status']}, "
             f"Due Date: {task['due_date'].strftime('%d-%m-%Y')}"
             )
-
+        print()
     #fetching specific fields of a particular id
     def read_by_id(self,task_id,field=None):
         for task in self.list_items:
@@ -42,38 +42,55 @@ class Todolist:
                     return task.get(field)
                 return task
         return None
-    
-    #updating status and due_date
-    def update(self,task_id):
+
+    #updating all 3 fields
+    def update(self):
+        self.read_all()
+        task_id = int(input('Choose the id to perform update action: '))
         for task in self.list_items:
             if task['id'] == task_id:
-                #status
-                print('Current status of the task: ',task['current_status'])
-                change = input('Do you want to change the status (y/n): ')
-                if change.lower() == 'y':
-                    task['current_status'] = not task['current_status']
-                #due date
-                print('Current due date of the task: ',task['due_date'].strftime('%d-%m-%Y'))
-                change_date = input('Do you want to change the due date of the task (y/n): ')
-                if change_date.lower() == 'y':
-                    new_due_date = input('Enter a new date: ')
-                    task['due_date'] = datetime.strptime(new_due_date,"%d-%m-%Y")
-                return 'Task updated'
+                print("Description: ", task['description'])
+                print("Current_status: ", task['current_status'])
+                print("Due-Date: ", task['due_date'].strftime('%d-%m-%Y'))
+                
+                print('Choose one option to which you would like to update/modify')
+                while True:
+                    print('1.Description')
+                    print('2.Current Status')
+                    print('3.Due date')
+                    print('4.Exit')
+                    option = input("Enter one option: ")
+                    if option == '1':
+                        new_desc = input("Enter a new description to update old one")
+                        task['description'] = new_desc
+                    elif option == '2':
+                        task['current_status'] = not task['current_status']
+                        print("Status is toggled")
+                    elif option == '3':
+                        new_due_date = input('Enter a new date (dd-mm-yyyy): ')
+                        task['due_date'] = datetime.strptime(new_due_date,"%d-%m-%Y")
+                    elif option == '4':
+                        return 'Task updated'
+                    else:
+                        print('Invalid option')
         return 'Task not found'
+        
     
     #delete a task
-    def delete(self,task_id):
+    def delete(self):
+        self.read_all()
+        task_id = int(input("Enter the id you want to delete: "))
         for task in self.list_items:
             if task['id'] == task_id:
-                if task['current_status'] == True:
+                print('Task found')
+                choose = input('Are you sure you want to delete (y/n)?')
+                if choose.lower() == 'y':
                     self.list_items.remove(task)
-                    return 'Task completed'
+                    return 'Task deleted'
                 else:
-                    return "Task is not completed, can't delete"
+                    return "Deletion cancelled"
         return 'Task not found'
 
-
-#practise
 t1 = Todolist()
 
 while True:
@@ -93,18 +110,16 @@ while True:
         due_date = input('Enter a due date (dd-mm-yyyy): ')
         t1.create(desc,status,due_date)
     elif option == '2':
-        print(t1.read_all())
+        t1.read_all()
     elif option == '3':
         task_id = int(input('Enter the task id of a task you want to read: '))
         field = input('Enter the field (description,current_status,due_date) you want to read: ')
         result = t1.read_by_id(task_id,field)
         print(result)
     elif option == '4':
-        task_id = int(input('Enter the task id you want to make changes: '))
-        t1.update(task_id)
+        t1.update()
     elif option == '5':
-        task_id = int(input('Enter the task to check status and delete: '))
-        print(t1.delete(task_id))
+        print(t1.delete())
     elif option == '6':
         break
     else:
