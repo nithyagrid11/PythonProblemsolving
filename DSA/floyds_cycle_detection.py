@@ -38,11 +38,29 @@ class Linkedlist:
                 print('Cycle detected')
                 return True
         return False
+    def remove_cycle(self):
+        s = self.start
+        f = self.start
+        if self.start is None:
+            return
+        #cycle detection
+        self.cycle_detection()
+        s = self.start
+        while s != f: #when true, that implies they met at cycle start so until then we move them
+            s = s.next
+            f = f.next
+        while f.next != s:
+            fast = fast.next
+        fast.next = None
+        print('Cycle is removed')
+        return True
+
 l1 = Linkedlist()
 l1.insert_at_end(1)
 l1.insert_at_end(2)
 l1.insert_at_end(3)
 l1.insert_at_end(4)
 l1.insert_at_end(5)
-l1.create_cycle(5)
+l1.create_cycle(2)
 print(l1.cycle_detection())
+print(l1.remove_cycle)
