@@ -7,7 +7,6 @@ class Linkedlist:
         self.start = None
     def insert_at_end(self,value):
         new_node = Node(value)
-        curr = self.start
         if self.start is None:
             self.start = new_node
             return
