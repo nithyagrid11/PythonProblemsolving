@@ -1,4 +1,4 @@
-def Armstrong_numb():
+def Armstrong_numb(): #sum of its own digits raised to the power of number of digits
     digits = []
     n = int(input('How many digits?: '))
     for i in range(n):
