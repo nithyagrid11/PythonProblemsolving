@@ -12,5 +12,4 @@ def combination():
                 new.append(prefix + letter)
         result = new
     return result
-
 print(combination())
