@@ -1,0 +1,8 @@
+172.16.0.0 - frank [10/Oct/2000:13:55:36 -0700] "GET /apache_pb.gif HTTP/1.0" 200 2326
+10.0.0.5 - max [10/Oct/2000:14:00:01 -0700] "POST /cgi-bin/process.cgi HTTP/1.1" 201 1024
+127.0.0.1 - hellen [10/Oct/2000:14:05:15 -0700] "PUT /index.htm HTTP/1.1" 200 182
+203.0.113.1 - mike [10/Oct/2000:14:10:40 -0700] "DELETE /users/123 HTTP/1.1" 204 -
+203.45.10.2 - nancy [10/Oct/2000:14:15:22 -0700] "HEAD /index.htm HTTP/1.1" 200 -
+192.168.1.10 - steve [10/Oct/2000:14:20:50 -0700] "OPTIONS * HTTP/1.1" 200 -
+203.0.113.1 - mike [10/Oct/2000:14:10:40 -0700] "DELETE /users/123 HTTP/1.1" 200 -
+192.168.1.10 - steve [10/Oct/2000:14:20:50 -0700] "OPTIONS * HTTP/1.1" 201 -
