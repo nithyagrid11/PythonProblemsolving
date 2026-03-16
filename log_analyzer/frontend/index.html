@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<title>Smart Log Analyzer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="header">
+<div class="logo">📁 Smart Log Analyzer</div>
+<div class="status">Status: Connected <span class="dot"></span></div>
+</header>
+
+<div class="container">
+
+<!-- LEFT PANEL -->
+
+<div class="left-panel">
+
+<h2>Log Input</h2>
+
+<button class="upload-btn">Upload Log File</button>
+
+<p class="divider">Or</p>
+
+<h4>Or Paste Logs Below</h4>
+
+<textarea placeholder="Paste logs here..."></textarea>
+
+<button class="analyze-btn">Analyze Logs</button>
+
+<button class="result-btn">Results</button>
+
+</div>
+
+<!-- RIGHT PANEL -->
+
+<div class="right-panel">
+
+<h2>Log Summary</h2>
+
+<div class="cards">
+
+<div class="card info">
+<h4>INFO LOGS</h4>
+<p>12</p>
+</div>
+
+<div class="card warning">
+<h4>WARNING LOGS</h4>
+<p>5</p>
+</div>
+
+<div class="card error">
+<h4>ERROR LOGS</h4>
+<p>3</p>
+</div>
+
+</div>
+
+<h2 class="analysis-title">Error Analysis</h2>
+
+<div class="analysis">
+
+<div class="chart">
+<p>Chart Placeholder</p>
+</div>
+
+<div class="top-errors">
+
+<h3>Top Errors</h3>
+
+<ul>
+<li>Database Connection Failed : 2</li>
+<li>Timeout Error : 1</li>
+<li>Auth Failed : 1</li>
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<footer>
+Built with FastAPI • HTML • JS
+</footer>
+
+</body>
+</html>
