@@ -5,7 +5,7 @@ app = FastAPI()
 
 @app.get("/")
 def home():
-    return {"message": "Smart Log Analyzer API is running"}
+    return {"message": "Smart Log Analyzer API is running"} #message for home page
 @app.get("/favicon.ico")
 def favicon():
     return Response(status_code = 204) #204 - no content, browser stays quiet
