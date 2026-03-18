@@ -2,7 +2,7 @@ import re
 import json
 from collections import defaultdict
 import os
-print(os.getcwd())
+print(os.getcwd()) #returns a str of the current working directory
 
 def analyze_logs(n):
     log_pattern = re.compile(r'(\d+\.\d+\.\d+\.\d+)\s+-\s+(\S+)\s+\[(.*?)\]\s+"(\S+)\s+(\S+)\s+(\S+)"\s+(\d{3})\s+(\S+)')
@@ -18,7 +18,10 @@ def analyze_logs(n):
     
     total_count = 0
 
-    with open('backend/server.log','r') as f:
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__)) #__file__ is a built-in variable in python holds the path of the current file; dirname - so till backend
+    filepath = os.path.join(BASE_DIR, n) #joining backend and server.log
+
+    with open(filepath, 'r') as f:  
         for line in f:
             match = log_pattern.search(line)
             if not match:
@@ -65,6 +68,7 @@ def analyze_logs(n):
         'log summary': log_summary,
         'total count': total_count
     }
-result = analyze_logs('server.log')
-print('\nLog Analysis Report\n')
-print(json.dumps(result, indent = 4)) #dumps converts python to json
+if __name__ == "__main__":
+    result = analyze_logs('server.log')
+    print('\nLog Analysis Report\n')
+    print(json.dumps(result, indent = 4)) #dumps converts python to json
