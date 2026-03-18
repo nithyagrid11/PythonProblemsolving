@@ -2,7 +2,7 @@ import re
 import json
 from collections import defaultdict
 import os
-print(os.getcwd()) #returns a str of the current working directory
+print(os.getcwd()) #returns a str of the current working directory of the file
 
 def analyze_logs(n):
     log_pattern = re.compile(r'(\d+\.\d+\.\d+\.\d+)\s+-\s+(\S+)\s+\[(.*?)\]\s+"(\S+)\s+(\S+)\s+(\S+)"\s+(\d{3})\s+(\S+)')
