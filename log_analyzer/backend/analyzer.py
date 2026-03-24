@@ -4,7 +4,7 @@ from collections import defaultdict
 import os
 print(os.getcwd()) #returns a str of the current working directory of the file
 
-def analyze_logs(n):
+def analyze_logs_from_lines(lines):
     log_pattern = re.compile(r'(\d+\.\d+\.\d+\.\d+)\s+-\s+(\S+)\s+\[(.*?)\]\s+"(\S+)\s+(\S+)\s+(\S+)"\s+(\d{3})\s+(\S+)')
     
     valid_ip_pattern = re.compile(r'\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b')
@@ -18,15 +18,10 @@ def analyze_logs(n):
     
     total_count = 0
 
-    BASE_DIR = os.path.dirname(os.path.abspath(__file__)) #__file__ is a built-in variable in python holds the path of the current file; dirname - so till backend
-    filepath = os.path.join(BASE_DIR, n) #joining backend and server.log
-
-    with open(filepath, 'r') as f:  
-        for line in f:
+    for line in lines:
             match = log_pattern.search(line)
             if not match:
                 continue
-
             ip = match.group(1)
             status = int(match.group(7))
             timestamp = match.group(3)
@@ -59,16 +54,28 @@ def analyze_logs(n):
         'methods': dict(method_counts),
         'endpoint': dict(endpoint_counts)
     }
+    total_errors = sum(error_freq.values())
+    total_warnings = sum(warning_detection.values())
+    suspicious_count = len(suspicious_activity)
+    peak_hour = max(usage_slots, key=usage_slots.get, default="None")
     return {
-        'ip count': dict(ip_counts),
-        'error frequency': dict(error_freq),
-        'warning detection': dict(warning_detection),
-        'usage slots': dict(usage_slots),
-        'suspicious activity detection': suspicious_activity,
-        'log summary': log_summary,
-        'total count': total_count
+        "total_count": total_count,
+        "total_errors": total_errors,
+        "total_warnings": total_warnings,
+        "suspicious_count": suspicious_count,
+        "peak_hour":peak_hour,
+
+        "details":{
+            'ip count': dict(ip_counts),
+            'error frequency': dict(error_freq),
+            'warning detection': dict(warning_detection),
+            'usage slots': dict(usage_slots),
+            'suspicious activity detection':   suspicious_activity,
+            'log summary': log_summary,
+            'total count': total_count
+        }
     }
 if __name__ == "__main__":
-    result = analyze_logs('server.log')
+    result = analyze_logs_from_lines('server.log')
     print('\nLog Analysis Report\n')
     print(json.dumps(result, indent = 4)) #dumps converts python to json
