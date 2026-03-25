@@ -54,6 +54,13 @@ def analyze_logs_from_lines(lines):
         'methods': dict(method_counts),
         'endpoint': dict(endpoint_counts)
     }
+    #spike detection
+    spikes ={}
+    avg = sum(usage_slots.values())/len(usage_slots)
+    for hour, count in usage_slots.items():
+        if count > avg * 1.5:
+            spikes[hour] = count
+
     total_errors = sum(error_freq.values())
     total_warnings = sum(warning_detection.values())
     suspicious_count = len(suspicious_activity)
@@ -64,6 +71,7 @@ def analyze_logs_from_lines(lines):
         "total_warnings": total_warnings,
         "suspicious_count": suspicious_count,
         "peak_hour":peak_hour,
+        "spike_hours": spikes,
 
         "details":{
             'ip count': dict(ip_counts),
@@ -79,3 +87,13 @@ if __name__ == "__main__":
     result = analyze_logs_from_lines('server.log')
     print('\nLog Analysis Report\n')
     print(json.dumps(result, indent = 4)) #dumps converts python to json
+
+
+
+
+'''172.16.0.1 - user4 [10/Oct/2000:13:00:01 -0700] "GET /home HTTP/1.1" 200 900
+172.16.0.1 - user4 [10/Oct/2000:13:01:02 -0700] "GET /about HTTP/1.1" 200 850
+172.16.0.1 - user4 [10/Oct/2000:13:02:03 -0700] "GET /services HTTP/1.1" 200 870
+172.16.0.1 - user4 [10/Oct/2000:13:03:04 -0700] "GET /contact HTTP/1.1" 200 880
+172.16.0.1 - user4 [10/Oct/2000:13:04:05 -0700] "GET /products HTTP/1.1" 200 920
+10.0.0.3 - user5 [10/Oct/2000:14:10:10 -0700] "GET /home HTTP/1.1" 200 1000'''
