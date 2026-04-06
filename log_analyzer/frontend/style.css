@@ -182,19 +182,23 @@ button:hover {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease;
 }
+
 .card:hover {
     transform: translateY(-5px);
 }
+
 .card p {
     margin: 0;
     font-size: 20px;
     color: #555;
 }
+
 .card h2 {
     margin-top: 10px;
     font-size: 20px;
     color: #222;
 }
+
 .spike {
     display: flex;
     justify-content: space-between;
@@ -202,11 +206,13 @@ button:hover {
     gap: 10px;
     flex-wrap: wrap;
 }
-#spike-detection{
+
+#spike-detection {
     text-align: center;
     display: block;
     width: 100%;
 }
+
 .analysis {
     background: white;
     border-radius: 8px;
@@ -217,21 +223,25 @@ button:hover {
     margin-top: 20px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
-.chart-container{
+
+.chart-container {
     display: flex;
     gap: 20px;
     justify-content: space-between;
     align-items: center;
     flex-wrap: nowrap;
 }
-.chart-box{
+
+.chart-box {
     width: 48%;
     height: 250px;
 }
-.chart-box canvas{
+
+.chart-box canvas {
     width: 100% !important;
     height: 100% !important;
 }
+
 .history-section {
     background: white;
     border-radius: 8px;
@@ -239,57 +249,87 @@ button:hover {
     margin-top: 20px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
+
 .history-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
+
 .history-title {
     font-size: 28px;
     margin: 0;
 }
+
 .history-card {
     background: #f9f9f9;
     padding: 15px;
     margin-top: 15px;
     border-radius: 6px;
     font-size: 14px;
+    /* max-height: 200px;limit card height */
+    /* overflow-y: auto;/* scroll if content too long */
 }
-#history-container{
+
+.history-card p {
+    margin: 5px 0;
+    word-break: break-word;
+    white-space: pre-wrap;
+}
+
+#history-container {
     display: none;
 }
-/* Mobile responsive breakpoint */
+
+/* Mobile responsive */
 @media (max-width: 768px) {
     .container {
         flex-direction: column;
         padding: 80px 10px 20px;
     }
+
     .sidebar {
         position: static;
         max-width: 100%;
         max-height: none;
         margin-bottom: 20px;
     }
+
     .main-content {
         margin-left: 0;
     }
+
     .results {
         grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
         gap: 15px;
     }
+
     .navbar {
         height: auto;
         min-height: 60px;
         padding: 10px 1rem;
     }
+
     .left-section {
         flex-wrap: wrap;
     }
+
+    /* Fix overflow in history text */
+    .history-card p {
+        word-break: break-word;
+        white-space: pre-wrap;
+    }
+    .history-card {
+        max-height: 200px;
+        overflow-y: auto;
+    }
 }
+
 @media (max-width: 480px) {
     .results {
         grid-template-columns: 1fr;
     }
+
     .card {
         padding: 15px;
     }

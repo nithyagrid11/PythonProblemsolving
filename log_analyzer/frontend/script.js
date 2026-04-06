@@ -168,6 +168,7 @@ async function loadHistory(){
         return;
     }
     container.style.display = "block";
+    container.style.overflow = "scroll";
 
     const res = await fetch("http://127.0.0.1:8000/history")
     const data = await res.json();
