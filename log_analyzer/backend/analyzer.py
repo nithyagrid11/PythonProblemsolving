@@ -107,9 +107,20 @@ def analyze_logs_from_lines(lines):
 172.16.0.1 - user4 [10/Oct/2000:13:04:05 -0700] "GET /products HTTP/1.1" 200 920
 10.0.0.3 - user5 [10/Oct/2000:14:10:10 -0700] "GET /home HTTP/1.1" 200 1000'''
 
+#single json string i/p of above logs
+'''{
+  "content": "172.16.0.1 - user4 [10/Oct/2000:13:00:01 -0700] \"GET /home HTTP/1.1\" 200 900\n172.16.0.1 - user4 [10/Oct/2000:13:01:02 -0700] \"GET /about HTTP/1.1\" 200 850\n172.16.0.1 - user4 [10/Oct/2000:13:02:03 -0700] \"GET /services HTTP/1.1\" 200 870\n172.16.0.1 - user4 [10/Oct/2000:13:03:04 -0700] \"GET /contact HTTP/1.1\" 200 880\n172.16.0.1 - user4 [10/Oct/2000:13:04:05 -0700] \"GET /products HTTP/1.1\" 200 920\n10.0.0.3 - user5 [10/Oct/2000:14:10:10 -0700] \"GET /home HTTP/1.1\" 200 1000"
+}'''
+
+
 '''192.168.1.10 - john [10/Oct/2000:13:55:36 -0700] "GET /home HTTP/1.1" 200 2326 "http://example.com/start" "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
 10.0.0.5 - alice [10/Oct/2000:14:01:22 -0700] "POST /api/login HTTP/1.1" 500 1200 "http://example.com/login" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)"
 172.16.0.3 - bob [10/Oct/2000:14:05:10 -0700] "GET /dashboard HTTP/1.1" 404 800 "http://example.com/home" "Mozilla/5.0 (X11; Linux x86_64)"
 192.168.1.10 - john [10/Oct/2000:14:10:45 -0700] "GET /profile HTTP/1.1" 200 1500 "http://example.com/dashboard" "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
 10.0.0.5 - alice [10/Oct/2000:14:12:30 -0700] "PUT /api/update HTTP/1.1" 403 950 "http://example.com/settings" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)"
 172.16.0.3 - bob [10/Oct/2000:14:15:00 -0700] "DELETE /api/remove HTTP/1.1" 500 1100 "http://example.com/admin" "Mozilla/5.0 (X11; Linux x86_64)"'''
+
+#server logs in json string
+'''{
+  "content": "192.168.1.1 - user1 [10/Oct/2000:12:10:10 -0700] \"GET /home HTTP/1.1\" 200 2326\n10.0.0.5 - user3 [10/Oct/2000:13:01:01 -0700] \"GET /home HTTP/1.1\" 200 1000\n10.0.0.5 - user3 [10/Oct/2000:13:02:02 -0700] \"POST /api HTTP/1.1\" 500 1500\n10.0.0.5 - user3 [10/Oct/2000:13:03:03 -0700] \"GET /data HTTP/1.1\" 404 800\n10.0.0.5 - user3 [10/Oct/2000:13:04:04 -0700] \"GET /data HTTP/1.1\" 404 800\n10.0.0.5 - user3 [10/Oct/2000:13:05:05 -0700] \"GET /data HTTP/1.1\" 404 800\n10.0.0.5 - user3 [10/Oct/2000:13:06:06 -0700] \"GET /data HTTP/1.1\" 404 800\n10.0.0.5 - user3 [10/Oct/2000:13:07:07 -0700] \"GET /data HTTP/1.1\" 404 800\n10.0.0.5 - user3 [10/Oct/2000:13:08:08 -0700] \"GET /data HTTP/1.1\" 404 800\n172.16.0.1 - user4 [10/Oct/2000:14:10:10 -0700] \"GET /contact HTTP/1.1\" 200 900\n172.16.0.1 - user4 [10/Oct/2000:14:11:11 -0700] \"GET /about HTTP/1.1\" 200 1200\n172.16.0.1 - user4 [10/Oct/2000:14:12:12 -0700] \"GET /services HTTP/1.1\" 200 950\n192.168.1.1 - user1 [10/Oct/2000:15:00:00 -0700] \"GET /home HTTP/1.1\" 200 2300\n192.168.1.1 - user1 [10/Oct/2000:15:01:01 -0700] \"GET /products HTTP/1.1\" 200 2100\n10.0.0.5 - user3 [10/Oct/2000:15:05:05 -0700] \"GET /data HTTP/1.1\" 404 800\n10.0.0.5 - user3 [10/Oct/2000:15:05:10 -0700] \"GET /data HTTP/1.1\" 404 800\n10.0.0.5 - user3 [10/Oct/2000:15:05:15 -0700] \"GET /data HTTP/1.1\" 404 800\n10.0.0.5 - user3 [10/Oct/2000:15:05:20 -0700] \"GET /data HTTP/1.1\" 404 800\n10.0.0.5 - user3 [10/Oct/2000:15:05:25 -0700] \"GET /data HTTP/1.1\" 404 800\n10.0.0.5 - user3 [10/Oct/2000:15:05:30 -0700] \"GET /data HTTP/1.1\" 404 800\n10.0.0.5 - user3 [10/Oct/2000:15:05:35 -0700] \"GET /data HTTP/1.1\" 404 800\n10.0.0.5 - user3 [10/Oct/2000:15:05:40 -0700] \"GET /data HTTP/1.1\" 404 800\n10.0.0.5 - user3 [10/Oct/2000:15:05:45 -0700] \"GET /data HTTP/1.1\" 404 800\n10.0.0.5 - user3 [10/Oct/2000:15:05:50 -0700] \"GET /data HTTP/1.1\" 404 800\n10.0.0.5 - user3 [10/Oct/2000:15:05:55 -0700] \"GET /data HTTP/1.1\" 404 800\n10.0.0.5 - user3 [10/Oct/2000:15:06:00 -0700] \"GET /data HTTP/1.1\" 404 800"
+}'''

@@ -3,6 +3,8 @@ from analyzer import analyze_logs_from_lines
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from datetime import datetime
+from database import connect_db
+import json
 
 logs_history = []
 
@@ -31,12 +33,32 @@ def favicon():
 def run_analysis(data: LogInput):
     log_lines = data.content.split("\n") #converts string to list of lines
     result = analyze_logs_from_lines(log_lines)
-    logs_history.append({
+    '''logs_history.append({
         "logs": data.content,
         "result": result,
         "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     })
-    return result #fastapi converts python->json automatically
+    return result #fastapi converts python->json automatically'''
+    total = result["total_count"]
+    errors = result["total_errors"]
+    warnings = result["total_warnings"]
+
+    result_json = json.dumps(result)
+
+    conn = connect_db()
+    cursor = conn.cursor()
+    cursor.execute(
+    "INSERT INTO log_history (logs, total_count, error_count, warning_count, result_json) VALUES (%s, %s, %s, %s, %s)", (data.content, total, errors, warnings, result_json))
+    rows = cursor.fetchall()
+    conn.commit()
+    conn.close()
+    return result
+
 @app.get("/history")
 def get_history():
-    return {"history":logs_history}
+    conn = connect_db()
+    cursor = conn.cursor(dictionary=True)
+    cursor.execute("SELECT * from log_history ORDER BY id DESC")
+    rows = cursor.fetchall()
+    conn.close()
+    return {"history":rows}
