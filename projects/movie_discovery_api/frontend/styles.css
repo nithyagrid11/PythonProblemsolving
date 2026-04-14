@@ -1,0 +1,16 @@
+body {
+  display: flex;
+  height: 100vh;
+}
+.header{
+    background: rgb(88, 200, 40);
+    border-bottom: 1px solid;
+    height: 50px;
+    width: 100px;
+    display: inline-block;
+    padding: 10px 15px;
+    width: auto;
+    line-height: 0.8;
+    border-radius: 4px;
+    vertical-align: middle;
+}
