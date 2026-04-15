@@ -8,7 +8,7 @@ body {
 nav{
     display: flex;
     align-items: center;
-    padding: 10px 20px;
+    padding: 10px 30px;
     background: #F6F1EB;
     width: 100%;
     box-sizing: border-box; 
@@ -46,12 +46,11 @@ nav{
 }
 .carousel-slider {
     display: flex; 
-    overflow-x: auto;
+    overflow: hidden;
     width: 100%;
     gap: 20px;
     padding-top: 20px;
 }
-/* Style for the mini cards inside the carousel */
 .movie-card-mini {
     min-width: 150px;
     background: #FFFFFF;
@@ -79,7 +78,7 @@ nav{
     color: #181717
 }
 .search-container {
-    padding: 20px 40px;
+    padding: 20px 30px;
     background-color: #F6F1EB;
     display: flex;
     justify-content: center;
@@ -88,22 +87,30 @@ form {
     display: flex;
     width: 100%;
     max-width: 900px;
+    height: 45px;
 }
 .search-dropdown{
+    flex: 1;
     padding: 10px 12px;
-    
+    border: 2px solid #E5DED6;
+    border-right: none;
+    background: #FFFFFF;
+    color: #2b2b2b;
+    cursor: pointer;
 }
 input[type="search"] {
-    flex: 1;
-    padding: 12px 20px;
+    flex: 2;
+    padding: 0px 20px;
     border-radius: 25px 0 0 25px;
     border: 2px solid #E5DED6;
+    border-right: none;
     background: #FFFFFF;
     color: #2b2b2b;
     outline: none;
 }
-button {
-    padding: 12px 25px;
+.searchbtn{
+    padding: 0px 25px;
+    width: 50px;
     background-color: #c97b63;
     border: none;
     border-radius: 0 25px 25px 0;
@@ -111,7 +118,63 @@ button {
     flex-shrink: 0;
     color: #FFFFFF;
     font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.searchbtn img{
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
 }
 input[type="search"]::placeholder {
     color: #9ca3af;
+}
+.filters{
+    position: relative;
+}
+.filter-btn{
+    padding: 0 16px;
+    border: 2px solid #E5DED6;
+    border-left: none;
+    background: #FFFFFF;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+.filter-menu{
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: #FFFFFF;
+    border: 1px solid #E5DED6;
+    border-radius: 6px;
+    display: none;
+    width: 150px;
+    z-index: 10;
+}
+.filter-item{
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+}
+.sub-menu{
+    display: none;
+    padding-left: 10px;
+    background: #FAF7F3;
+}
+.sub-menu p{
+    margin: 0;
+    padding: 8px;
+    cursor: pointer;
+}
+.sub-menu p:hover{
+    background: #F6F1EB;
+}
+input[type="search"],
+.filter-btn,
+.searchbtn{
+    height: 100%;
 }
