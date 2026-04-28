@@ -73,7 +73,7 @@ analyzeButton.addEventListener("click",async(e)=>{
         return;
     }
     try {
-        const response = await fetch("http://127.0.0.1:8000/analyze", {
+        const response = await fetch("http://127.0.0.1:8001/analyze", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -170,7 +170,7 @@ async function loadHistory(){
     container.style.display = "block";
     container.style.overflow = "scroll";
 
-    const res = await fetch("http://127.0.0.1:8000/history")
+    const res = await fetch("http://127.0.0.1:8001/history")
     const data = await res.json();
     container.innerHTML = "";
     data.history.reverse().forEach(item => {
