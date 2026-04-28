@@ -31,7 +31,6 @@ nav{
     padding: 20px 30px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; 
     align-items: flex-start;
     width: 100%;
     min-height: 450px;
@@ -44,15 +43,9 @@ nav{
 .carousel-content p{
     margin: 4px 0 0 0;
 }
-.carousel-slider {
-    display: flex; 
-    overflow: hidden;
-    width: 100%;
-    gap: 20px;
-    padding-top: 20px;
-}
 .movie-card-mini {
     min-width: 150px;
+    flex-shrink: 0;
     background: #FFFFFF;
     border-radius: 8px;
     border: 1px solid #E5DED6;
@@ -82,11 +75,36 @@ nav{
     background-color: #F6F1EB;
     display: flex;
     justify-content: center;
+    align-items: center;
+}
+.search-box {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+}
+.search-box input {
+    width: 100%;
+    padding: 10px 40px 10px 15px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+}
+#clear-btn {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 14px;
+    color: #666;
+    display: none;
+    cursor: pointer;
 }
 form {
     display: flex;
     width: 100%;
-    max-width: 900px;
+    max-width: 600px;
     height: 45px;
 }
 .search-dropdown{
@@ -177,4 +195,42 @@ input[type="search"],
 .filter-btn,
 .searchbtn{
     height: 100%;
+}
+.results-container {
+    margin-top: 40px;
+}
+#results-title {
+    margin-left: 40px;
+    font-size: 24px;
+    font-weight: bold;
+}
+.carousel-slider {
+    display: flex;
+    padding: 20px 0;
+    gap: 20px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    scrollbar-width: none;
+}
+.carousel-slider::-webkit-scrollbar{
+    display: none;
+}
+#results-slider {
+    display: flex;
+    gap: 20px;
+    padding: 20px 40px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    scroll-behavior: auto;
+    scrollbar-width: none;
+}
+.carousel-slider::-webkit-scrollbar {
+    display: none;
+}
+.results-container {
+    margin-top: 40px;
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
