@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="eng">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width = device-width, initial-scale = 1.0"/>
+        <title>Smart Log Analyzer</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    </head>
+    <body>
+        <!-- Navbar-->
+        <nav>
+            <div class="navbar">
+                <div class="left-section">
+                    <div class="icon">Image</div>
+                    <p style="font-size: 30px;">Smart Log Analyzer</p>
+                </div>
+                <!-- Status Indicator-->
+                <div class="status-item">
+                    <span id="status-text">Offline</span>
+                    <span id="status-indicator" class="status offline"></span>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container">
+
+           <!-- Side dashboard-->
+           <div class="sidebar">
+               <p class = "title" style = "font-size: 30px; text-align: center;">Log Input</p><hr>
+               <!-- File upload button -->
+               <input type="file" id="fileInput" style="display: none";/>
+               <button id="customButton">Upload Log File</button>
+               <span id="fileNameDisplay">No file chosen</span>
+               <pre id="logContent"></pre>
+               <div class="separator">
+                  <span>OR</span>
+               </div>
+               <p style = "font-size: 20px; text-align: left;">Paste Logs Below</p>
+               <textarea id = "comment" name ="comment" placeholder="Paste your logs here...."></textarea><br><br>
+               <button id = "commentbutton" type="button">Analyse logs</button>
+            </div>
+
+            <!-- Main Content -->
+            <div class="main-content">
+                <!--Log Summary box-->
+                <div class="summary-box">
+                    <p class = "summary-title" style = "font-size: 30px; text-align: center; margin: 15px 10px">Log Summary</p>
+                    <hr style="margin: 25px 10px;">
+                    <div class="results">
+                        <div class="card">
+                            <p>Total Logs</p>
+                            <h2 id="totalLogs">0</h2>
+                        </div>
+                        <div class="card">
+                           <p>Errors</p>
+                           <h2 id="errors">0</h2>
+                        </div>
+                        <div class="card">
+                           <p>Warnings</p>
+                           <h2 id="warnings">0</h2>
+                        </div>
+                        <div class="card">
+                           <p>Suspicious IPs</p>
+                           <h2 id="suspicious">0</h2>
+                        </div>
+                        <div class="card">
+                           <p>Peak Hour</p>
+                           <h2 id="peakHour">-</h2>
+                        </div>
+                        <div class="card spike">
+                            <p>Spike Detection</p>
+                            <h2 id="spike-detection">-</h2>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Analysis block-->
+                <div class="analysis">
+                    <p class = "analysis-title" style = "font-size: 30px; text-align: center; margin: 15px 10px;">Log Analytics</p>
+                    <hr style="margin: 25px 10px;">
+                    <div id="analysis-placeholder">
+                        <p style="text-align:center; color:#777; font-size:25px;">
+                        No analysis yet. Upload or paste logs to begin.
+                        </p>
+                    </div>
+                    <div class="chart-container" style="display: none;">
+                        <div class="chart-box">
+                            <h3 style="text-align: center; margin-top: 0;">Status Distribution</h3>
+                            <canvas id="statusChart"></canvas>
+                        </div>
+                        <div class="chart-box">
+                            <h3 style="text-align: center; margin-top: 0;">Traffic Over Time</h3>
+                            <canvas id="trafficChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- History section -->
+                <div class="history-section">
+                    <div class="history-header">
+                        <p class="history-title">History</p>
+                        <button onclick="loadHistory()">View Past Logs</button>
+                    </div>
+                    <div id="history-container"></div>
+                </div>
+            </div>
+        </div>
+        <script src="script.js"></script>
+        <script src="auth.js"></script>
+    </body>
+</html>
