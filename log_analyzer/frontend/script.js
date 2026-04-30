@@ -3,6 +3,11 @@ console.log("JS loaded");
 let statusChartInstance = null;
 let trafficChartInstance = null;
 
+const token = localStorage.getItem("token");
+if (!token) {
+    window.location.href = "login.html";
+}
+
 /* for the status - online or offline  */
 window.addEventListener("load",updateStatus);
 window.addEventListener("online",updateStatus);
@@ -76,7 +81,8 @@ analyzeButton.addEventListener("click",async(e)=>{
         const response = await fetch("http://127.0.0.1:8001/analyze", {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
             },
             body: JSON.stringify({ content: content }) /* js object -> json */
         });
@@ -170,17 +176,22 @@ async function loadHistory(){
     container.style.display = "block";
     container.style.overflow = "scroll";
 
-    const res = await fetch("http://127.0.0.1:8001/history")
+    const res = await fetch("http://127.0.0.1:8001/history",
+        {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        });
     const data = await res.json();
     container.innerHTML = "";
     data.history.reverse().forEach(item => {
         const card = document.createElement("div");
         card.className = "history-card";
         card.innerHTML = `
-            <p><b>Logs:</b> ${item.logs}</p>
-            <p><b>Result:</b> ${JSON.stringify(item.result)}</p>
-            <p><b>Time:</b> ${item.timestamp}</p>
-        `;
+           <p><b>Logs:</b> ${item.logs}</p>
+           <p><b>Result:</b> ${item.result_json}</p>
+           <p><b>Time:</b> ${item.timestamp}</p>
+       `;
         container.appendChild(card);
     });
     console.log("History function")

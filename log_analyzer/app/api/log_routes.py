@@ -1,9 +1,10 @@
-from fastapi import APIRouter, Response
+from fastapi import APIRouter, Response, Depends
 from models.schemas import LogInput
 from services.analyzer import analyze_logs_from_lines
 from db.database import connect_db
 from datetime import datetime
 import json
+from services.auth import get_current_user
 
 router = APIRouter()
 
@@ -16,7 +17,7 @@ def favicon():
 
 
 @router.post("/analyze")
-def run_analysis(data: LogInput):
+def run_analysis(data: LogInput, current_user: dict = Depends(get_current_user)):
     log_lines = data.content.split("\n")
     result = analyze_logs_from_lines(log_lines)
 
@@ -39,8 +40,19 @@ def run_analysis(data: LogInput):
     cursor = conn.cursor()
 
     cursor.execute(
-        "INSERT INTO log_history (logs, total_count, error_count, warning_count, result_json) VALUES (%s, %s, %s, %s, %s)",
-        (data.content, total, errors, warnings, result_json)
+        """
+        INSERT INTO log_history
+        (logs, total_count, error_count, warning_count, result_json, user_id)
+        VALUES (%s, %s, %s, %s, %s, %s)
+        """,
+       (
+          data.content,
+          total,
+          errors,
+          warnings,
+          result_json,
+          current_user["user_id"]
+       )
     )
 
     conn.commit()
@@ -50,12 +62,18 @@ def run_analysis(data: LogInput):
 
 
 @router.get("/history")
-def get_history():
+def get_history(current_user: dict = Depends(get_current_user)):
     conn = connect_db()
     cursor = conn.cursor(dictionary=True)
 
     cursor.execute(
-        "SELECT * from log_history ORDER BY id DESC"
+       """
+       SELECT *
+       FROM log_history
+       WHERE user_id = %s
+       ORDER BY id DESC
+       """,
+       (current_user["user_id"],)
     )
 
     rows = cursor.fetchall()
