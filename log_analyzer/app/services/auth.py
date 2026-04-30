@@ -3,9 +3,8 @@ from jose import jwt, JWTError
 from datetime import datetime, timedelta, timezone
 from fastapi import Depends, HTTPException
 from fastapi.security import OAuth2PasswordBearer
+from utils.config import SECRET_KEY
 
-
-SECRET_KEY = "mysecretkey"
 ALGORITHM = "HS256"
 
 pwd_context = CryptContext(
